@@ -7,7 +7,7 @@ class Indecision extends Component {
     this.handlePick = this.handlePick.bind(this)
     this.handleAddOption = this.handleAddOption.bind(this)
     this.state = {
-      options: ['One', 'Two', 'Three', 'Four']
+      options: []
     }
   }
   // We can delete the options by making a method and passing it down to a child component(<Option/>) and having it called down in the child component
@@ -28,7 +28,11 @@ class Indecision extends Component {
   }
 
   handleAddOption(option){
-    console.log(option)
+    this.setState((prevState) => {
+      return {
+        options: prevState.options.concat(option)
+      }
+    })
   }
 
   render(){
