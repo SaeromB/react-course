@@ -25,7 +25,8 @@ class Counter extends React.Component {
       }
     })
   }
-
+  //how does this work?
+  //react will only render once 
   handleReset() {
     this.setState(() => {
       return{
