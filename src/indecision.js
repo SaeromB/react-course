@@ -4,10 +4,13 @@ class Indecision extends Component {
   constructor(props) {
     super(props);
     this.handleDeleteOptions = this.handleDeleteOptions.bind(this)
+    this.handlePick = this.handlePick.bind(this)
     this.state = {
       options: ['One', 'Two', 'Three', 'Four']
     }
   }
+  // We can delete the options by making a method and passing it down to a child component(<Option/>) and having it called down in the child component
+  // that alow to reverse the data flow and the child component can do somthing in the parent component ex)handleDeleteOptions
 
   handleDeleteOptions() {
     this.setState(() => {
@@ -19,7 +22,8 @@ class Indecision extends Component {
 
   handlePick() {
     const randomNum = Math.floor(Math.random() * this.state.options.length);
-    alert(randomNum) 
+    const option = this.state.options[randomNum]
+    alert(option)
   }
 
   render(){
@@ -29,7 +33,8 @@ class Indecision extends Component {
       <div>
         <Header title={title} subtitle={subtitle}/>
         {/* if there is options do not disable button */}
-        <Action hasOptions={this.state.options.length > 0}/>
+        <Action hasOptions={this.state.options.length > 0} handlePick={this.handlePick}/>
+        {/* this will rerender (this is a prop)*/}
         <Options options={this.state.options} handleDeleteOptions={this.handleDeleteOptions} />
         <AddOption />
       </div>
@@ -85,6 +90,7 @@ class Option extends Component {
   }
 }
 
+// addOption 처럼 parent의 데이터를 바꿔야할 상황이 있다
 class AddOption extends Component {
 
   handleAddOption(e) {
