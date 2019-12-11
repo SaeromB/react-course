@@ -5,6 +5,7 @@ class Indecision extends Component {
     super(props);
     this.handleDeleteOptions = this.handleDeleteOptions.bind(this)
     this.handlePick = this.handlePick.bind(this)
+    this.handleAddOption = this.handleAddOption.bind(this)
     this.state = {
       options: ['One', 'Two', 'Three', 'Four']
     }
@@ -26,6 +27,10 @@ class Indecision extends Component {
     alert(option)
   }
 
+  handleAddOption(option){
+    console.log(option)
+  }
+
   render(){
     const title = 'Indecision'
     const subtitle = 'Put your life in the hands of a Computer'
@@ -36,7 +41,7 @@ class Indecision extends Component {
         <Action hasOptions={this.state.options.length > 0} handlePick={this.handlePick}/>
         {/* this will rerender (this is a prop)*/}
         <Options options={this.state.options} handleDeleteOptions={this.handleDeleteOptions} />
-        <AddOption />
+        <AddOption handleAddOption={this.handleAddOption} />
       </div>
     )
   }
@@ -92,14 +97,17 @@ class Option extends Component {
 
 // addOption 처럼 parent의 데이터를 바꿔야할 상황이 있다
 class AddOption extends Component {
-
+  constructor(props){
+    super(props)
+    this.handleAddOption = this.handleAddOption.bind(this)
+  }
   handleAddOption(e) {
     e.preventDefault();
 
     const option = e.target.elements.option.value.trim()
 
     if (option) {
-      alert(option);
+      this.props.handleAddOption(option)
     }
   }
   render() {
