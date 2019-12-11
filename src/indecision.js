@@ -68,19 +68,32 @@ class Header extends Component {
   }
 }
 
-class Action extends Component {
-  render() {
-    return(
-      <div>
-        <button
-          onClick={this.props.handlePick}
-          disabled={!this.props.hasOptions}
-        > 
-          What should I do?
-        </button>
-      </div>
-    )
-  }
+// class Action extends Component {
+//   render() {
+//     return(
+//       <div>
+//         <button
+//           onClick={this.props.handlePick}
+//           disabled={!this.props.hasOptions}
+//         > 
+//           What should I do?
+//         </button>
+//       </div>
+//     )
+//   }
+// }
+// change class Action to a stateless component
+
+const Action = (props) => {
+  return (
+    <div>
+      <button
+       onClick={props.handlePick}
+       disabled={props.hasOptions}>
+       What should I do?
+      </button>
+    </div>
+  )
 }
 
 class Options extends Component {
@@ -142,4 +155,15 @@ class AddOption extends Component {
   }
 }
 
-export default Indecision;
+// stateless functional components can use 
+// (props) is the same as this.props
+// const User = (props) => {
+//   return (
+//     <div>
+//       <p>Name: {props.name}</p>
+//       <p>age: </p>
+//     </div>
+//   )
+// }
+
+export default Indecision

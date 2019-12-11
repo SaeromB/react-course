@@ -6,6 +6,7 @@ import './index.css';
 // import VisibilityToggle from './toggle';
 // import IndecisionApp from './indecision-example';
 import Indecision from './indecision';
+// import User from './indecision';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<Indecision/>, document.getElementById('root'));
