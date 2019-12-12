@@ -1,15 +1,16 @@
-import React from 'react'
+import React, {Component} from 'react'
 
-class Counter extends React.Component {
+class Counter extends Component {
   constructor(props){
     super(props);
     this.handleAddOne = this.handleAddOne.bind(this)
     this.handleMinusOne = this.handleMinusOne.bind(this)
     this.handleReset = this.handleReset.bind(this)
     this.state = {
-      count: 0
+      count: props.count
     }
   }
+
   handleAddOne(){
     this.setState((prevState) => {
       return{
@@ -57,6 +58,10 @@ class Counter extends React.Component {
       </div>
     );
   }
+}
+
+Counter.defaultProps = {
+  count : 0
 }
 
 export default Counter;

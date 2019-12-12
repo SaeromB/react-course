@@ -45,7 +45,7 @@ class Indecision extends Component {
     const subtitle = 'Put your life in the hands of a Computer'
     return(
       <div>
-        <Header title={title} subtitle={subtitle}/>
+        <Header subtitle={subtitle}/>
         {/* if there is options do not disable button */}
         <Action hasOptions={this.state.options.length > 0} handlePick={this.handlePick}/>
         {/* this will rerender (this is a prop)*/}
