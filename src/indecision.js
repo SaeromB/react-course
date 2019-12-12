@@ -14,12 +14,15 @@ class Indecision extends Component {
   // that alow to reverse the data flow and the child component can do somthing in the parent component ex)handleDeleteOptions
 
   handleDeleteOptions() {
-    this.setState(() => {
-      return {
-      options: []
-      }
-    })
+    // this.setState(() => {
+    //   return {
+    //   options: []
+    //   }
+    // })
+    // If we want to return an object inside the function arrow is used as the function body so it need to be wrapped in ()
+    this.setState (()=> ({options: []}));
   }
+
 
   handlePick() {
     const randomNum = Math.floor(Math.random() * this.state.options.length);
@@ -74,28 +77,12 @@ Indecision.defaultProps ={
   options : []
 }
 
-// class Action extends Component {
-//   render() {
-//     return(
-//       <div>
-//         <button
-//           onClick={this.props.handlePick}
-//           disabled={!this.props.hasOptions}
-//         > 
-//           What should I do?
-//         </button>
-//       </div>
-//     )
-//   }
-// }
-// change class Action to a stateless component
-
 const Action = (props) => {
   return (
     <div>
       <button
        onClick={props.handlePick}
-       disabled={props.hasOptions}>
+       disabled={!props.hasOptions}>
        What should I do?
       </button>
     </div>
