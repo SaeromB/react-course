@@ -7,7 +7,7 @@ class Indecision extends Component {
     this.handlePick = this.handlePick.bind(this)
     this.handleAddOption = this.handleAddOption.bind(this)
     this.state = {
-      options: []
+      options: props.options
     }
   }
   // We can delete the options by making a method and passing it down to a child component(<Option/>) and having it called down in the child component
@@ -68,6 +68,10 @@ const Header = (props) => {
 // give default to the title
 Header.defaultProps = {
   title: 'Indecision'
+}
+
+Indecision.defaultProps ={
+  options : []
 }
 
 // class Action extends Component {
