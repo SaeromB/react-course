@@ -11,6 +11,35 @@ class Indecision extends Component {
       options: props.options
     }
   }
+  componentDidMount(){
+    try {
+      const json = localStorage.getItem('options')
+      const options = JSON.parse(json);
+
+      // this.setState(() => {
+      //   return {
+      //     options:options
+      //   }
+      // })
+      if(options){
+        this.setState(() => ({options}))
+      }
+    } catch(e){
+      // do nothing
+    }
+  }
+
+  //componentDidUpdate will work after props or state changes ex)change options
+  componentDidUpdate(prevProps, prevState) {
+    if(prevState.options.length !== this.state.options.length) {
+      const json = JSON.stringify(this.state.options)
+      localStorage.setItem('options', json);
+    }
+  }
+  // if there is a web with different pages and render something new Unmount will work
+  componentWillUnmount(){
+    console.log('componentWillUnmount')
+  }
   // We can delete the options by making a method and passing it down to a child component(<Option/>) and having it called down in the child component
   // that alow to reverse the data flow and the child component can do somthing in the parent component ex)handleDeleteOptions
 
@@ -105,7 +134,6 @@ const Action = (props) => {
   )
 }
 
-
 const Options = (props) => {
   return (
     <div>
@@ -116,6 +144,8 @@ const Options = (props) => {
   )
 }
 
+// the button arrow function will pass in a reference to the function
+// this will invoke when the onClick event is tiggered
 const Option = (props) => {
   return (
     <div>
@@ -127,6 +157,9 @@ const Option = (props) => {
     </div>
   )
 }
+// When the remove button gets clicked
+// the method does not work directly because than we will pass the event argument up
+// instad the fucntion calls optiontext is sent to handleDeleteOption?
 
 
 // addOption 처럼 parent의 데이터를 바꿔야할 상황이 있다
