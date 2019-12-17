@@ -3,7 +3,7 @@ import Indecision from './components/Indecision'
 
 const App = () => {
   return(
-  <Indecision />
+    <Indecision/>
   )
 }
 

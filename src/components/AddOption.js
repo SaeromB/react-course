@@ -3,14 +3,14 @@ import React, {Component} from 'react';
 
 // addOption 처럼 parent의 데이터를 바꿔야할 상황이 있다
 class AddOption extends Component {
-  constructor(props){
-    super(props)
-    this.handleAddOption = this.handleAddOption.bind(this)
-    this.state = {
-      error: undefined
-    }
+  state = {
+    error: undefined
   }
-  handleAddOption(e) {
+  
+  // The arrow function do not have their own this binding
+  // Instead they use what ever this binding in the parent scope and for classes that is the class instance
+
+  handleAddOption = (e) => {
     e.preventDefault();
 
     const option = e.target.elements.option.value.trim()

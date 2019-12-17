@@ -3,18 +3,53 @@ import Header from './Header';
 import Action from './Actions';
 import Options from './Options';
 import AddOption from './AddOption';
+import OptionModal from './OptionModal';
 
 class Indecision extends Component {
-  constructor(props) {
-    super(props);
-    this.handleDeleteOptions = this.handleDeleteOptions.bind(this)
-    this.handlePick = this.handlePick.bind(this)
-    this.handleAddOption = this.handleAddOption.bind(this)
-    this.handleDeleteOption = this.handleDeleteOption.bind(this)
-    this.state = {
-      options: []
-    }
+
+  state = {
+    options: [],
+    selectedOption: undefined
   }
+
+  handleDeleteOptions = () => {
+    // this.setState(() => {
+    //   return {
+    //   options: []
+    //   }
+    // })
+    // If we want to return an object inside the function arrow is used as the function body so it need to be wrapped in ()
+    this.setState (()=> ({options: []}));
+  }
+
+  //Remove indivisual item
+  handleDeleteOption =(optionToRemove)=>{
+    this.setState((prevState) => ({
+    // update options array
+    options : prevState.options.filter((option) => optionToRemove !== option)
+    }))
+  }
+  
+  handlePick = () => {
+    const randomNum = Math.floor(Math.random() * this.state.options.length);
+    const option = this.state.options[randomNum]
+    alert(option)
+  }
+
+  handleAddOption = (option) => {
+    if(!option) {
+      return 'Enter valid value to add item'
+    } else if (this.state.options.indexOf(option) > -1 ) {
+      return 'This option exist'
+    }
+    // this.setState((prevState) => {
+    //   return {
+    //     options: prevState.options.concat(option)
+    //   }
+    this.setState ((prevState)=> ({ options: prevState.options.concat(option)}))
+    // })
+  }
+  
   componentDidMount(){
     try {
       const json = localStorage.getItem('options')
@@ -47,50 +82,8 @@ class Indecision extends Component {
   // We can delete the options by making a method and passing it down to a child component(<Option/>) and having it called down in the child component
   // that alow to reverse the data flow and the child component can do somthing in the parent component ex)handleDeleteOptions
 
-  handleDeleteOptions() {
-    // this.setState(() => {
-    //   return {
-    //   options: []
-    //   }
-    // })
-    // If we want to return an object inside the function arrow is used as the function body so it need to be wrapped in ()
-    this.setState (()=> ({options: []}));
-  }
-
-  //Remove indivisual item
-  handleDeleteOption(optionToRemove){
-    this.setState((prevState) => ({
-    // update options array
-    options : prevState.options.filter((option) => optionToRemove !== option)
-    }))
-  }
   
-
-
-  handlePick() {
-    const randomNum = Math.floor(Math.random() * this.state.options.length);
-    const option = this.state.options[randomNum]
-    alert(option)
-  }
-
-  handleAddOption(option){
-    if(!option) {
-      return 'Enter valid value to add item'
-    } else if (this.state.options.indexOf(option) > -1 ) {
-      return 'This option exist'
-    }
-    // this.setState((prevState) => {
-    //   return {
-    //     options: prevState.options.concat(option)
-    //   }
-    this.setState ((prevState)=> ({ options: prevState.options.concat(option)}))
-    // })
-  }
-
-  
-
   render(){
-    const title = 'Indecision'
     const subtitle = 'Put your life in the hands of a Computer'
     return(
       <div>
@@ -103,6 +96,7 @@ class Indecision extends Component {
           handleDeleteOptions={this.handleDeleteOptions}
           handleDeleteOption={this.handleDeleteOption} />
         <AddOption handleAddOption={this.handleAddOption} />
+        <OptionModal />
       </div>
     )
   }
