@@ -1,4 +1,8 @@
 import React, {Component} from 'react';
+import Header from './Header';
+import Action from './Actions';
+import Options from './Options';
+import AddOption from './AddOption';
 
 class Indecision extends Component {
   constructor(props) {
@@ -103,105 +107,5 @@ class Indecision extends Component {
     )
   }
 }
-
-const Header = (props) => {
-  return (
-    <div>
-      <h1>{props.title}</h1>
-      {props.subtitle && <h2>{props.subtitle}</h2>}
-    </div>
-  )
-}
-
-// give default to the title
-Header.defaultProps = {
-  title: 'Indecision'
-}
-
-
-const Action = (props) => {
-  return (
-    <div>
-      <button
-       onClick={props.handlePick}
-       disabled={!props.hasOptions}>
-       What should I do?
-      </button>
-    </div>
-  )
-}
-
-const Options = (props) => {
-  return (
-    <div>
-      <button onClick={props.handleDeleteOptions}>Remove All</button>
-        {props.options.map((option) => (
-        <Option key={option} optionText={option} handleDeleteOption={props.handleDeleteOption} />))}
-    </div>
-  )
-}
-
-// the button arrow function will pass in a reference to the function
-// this will invoke when the onClick event is tiggered
-const Option = (props) => {
-  return (
-    <div>
-      {props.optionText}
-      <button onClick={(e) => {
-        props.handleDeleteOption(props.optionText)}}> Remove</button>
-      {/* the button will not work and call the option function
-          change to a arrow function */}
-    </div>
-  )
-}
-// When the remove button gets clicked
-// the method does not work directly because than we will pass the event argument up
-// instad the fucntion calls optiontext is sent to handleDeleteOption?
-
-
-// addOption 처럼 parent의 데이터를 바꿔야할 상황이 있다
-class AddOption extends Component {
-  constructor(props){
-    super(props)
-    this.handleAddOption = this.handleAddOption.bind(this)
-    this.state = {
-      error: undefined
-    }
-  }
-  handleAddOption(e) {
-    e.preventDefault();
-
-    const option = e.target.elements.option.value.trim()
-    const error = this.props.handleAddOption(option)
-
-    // if (option) {
-    //   this.props.handleAddOption(option)
-    // }
-
-    this.setState(() => ({error}));
-  }
-  render() {
-    return(
-      <div>
-        {this.state.error && <p>{this.state.error}</p>}
-        <form onSubmit={this.handleAddOption}>  
-          <input type='text' name='option'/>
-          <button>Add Option</button>
-        </form>
-      </div>
-    )
-  }
-}
-
-// stateless functional components can use 
-// (props) is the same as this.props
-// const User = (props) => {
-//   return (
-//     <div>
-//       <p>Name: {props.name}</p>
-//       <p>age: </p>
-//     </div>
-//   )
-// }
 
 export default Indecision
