@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import Header from './Header';
-import Action from './Actions';
+import Action from './Action';
 import Options from './Options';
 import AddOption from './AddOption';
 import OptionModal from './OptionModal';
 
-class Indecision extends Component {
-
+export default class Indecision extends Component {
   state = {
     options: [],
     selectedOption: undefined
@@ -112,4 +111,3 @@ class Indecision extends Component {
   }
 }
 
-export default Indecision

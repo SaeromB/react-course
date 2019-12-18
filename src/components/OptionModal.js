@@ -8,6 +8,8 @@ const OptionModal = (props) => (
   //real boolan value?
     isOpen={!!props.selectedOption}
     contentLabel='Selected Option'
+    ariaHideApp={false}
+
     //click the background and the board disappear 
     onRequestClose={props.handleClearSelectedOption}
     >

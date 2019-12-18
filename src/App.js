@@ -1,11 +1,5 @@
 import React from 'react';
-import Indecision from './components/Indecision'
+import ReactDOM from 'react-dom';
+import Indecision from './components/Indecision';
 
-const App = () => {
-  return(
-    <Indecision/>
-  )
-}
-
-export default App;
-
+ReactDOM.render(<Indecision />, document.getElementById('app'));
