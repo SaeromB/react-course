@@ -22,6 +22,10 @@ class Indecision extends Component {
     this.setState (()=> ({options: []}));
   }
 
+  handleClearSelectedOption = () => {
+    this.setState (() => ({selectedOption: undefined}))
+  }
+
   //Remove indivisual item
   handleDeleteOption =(optionToRemove)=>{
     this.setState((prevState) => ({
@@ -30,10 +34,14 @@ class Indecision extends Component {
     }))
   }
   
+  // use this setState to set selected options 
   handlePick = () => {
     const randomNum = Math.floor(Math.random() * this.state.options.length);
     const option = this.state.options[randomNum]
-    alert(option)
+    this.setState(()=>({
+      //set the selected option to the option variable above
+      selectedOption : option
+    }))
   }
 
   handleAddOption = (option) => {
@@ -96,7 +104,9 @@ class Indecision extends Component {
           handleDeleteOptions={this.handleDeleteOptions}
           handleDeleteOption={this.handleDeleteOption} />
         <AddOption handleAddOption={this.handleAddOption} />
-        <OptionModal />
+        <OptionModal
+          selectedOption={this.state.selectedOption}
+          handleClearSelectedOption={this.handleClearSelectedOption} />
       </div>
     )
   }
