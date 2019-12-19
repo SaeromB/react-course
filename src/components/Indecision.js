@@ -99,14 +99,16 @@ export default class Indecision extends Component {
         <div className="container">
           <Action hasOptions={this.state.options.length > 0} handlePick={this.handlePick}/>
           {/* this will rerender (this is a prop)*/}
-          <Options
-            options={this.state.options}
-            handleDeleteOptions={this.handleDeleteOptions}
-            handleDeleteOption={this.handleDeleteOption} />
-          <AddOption handleAddOption={this.handleAddOption} />
-          <OptionModal
-            selectedOption={this.state.selectedOption}
-            handleClearSelectedOption={this.handleClearSelectedOption} />
+          <div className="widget">
+            <Options
+              options={this.state.options}
+              handleDeleteOptions={this.handleDeleteOptions}
+              handleDeleteOption={this.handleDeleteOption} />
+            <AddOption handleAddOption={this.handleAddOption} />
+            <OptionModal
+              selectedOption={this.state.selectedOption}
+              handleClearSelectedOption={this.handleClearSelectedOption} />
+          </div>
         </div>
       </div>
     )

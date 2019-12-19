@@ -3,9 +3,9 @@ import React from 'react';
 // the button arrow function will pass in a reference to the function
 // this will invoke when the onClick event is tiggered
 const Option = (props) => (
-  <div>
+  <div className="option">
     {props.optionText}
-    <button onClick={(e) => {
+    <button className="button button--link" onClick={(e) => {
       props.handleDeleteOption(props.optionText)}}> Remove</button>
     {/* the button will not work and call the option function change to a arrow function */}
   </div>
