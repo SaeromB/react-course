@@ -96,16 +96,18 @@ export default class Indecision extends Component {
       <div>
         <Header subtitle={subtitle}/>
         {/* if there is options do not disable button */}
-        <Action hasOptions={this.state.options.length > 0} handlePick={this.handlePick}/>
-        {/* this will rerender (this is a prop)*/}
-        <Options
-          options={this.state.options}
-          handleDeleteOptions={this.handleDeleteOptions}
-          handleDeleteOption={this.handleDeleteOption} />
-        <AddOption handleAddOption={this.handleAddOption} />
-        <OptionModal
-          selectedOption={this.state.selectedOption}
-          handleClearSelectedOption={this.handleClearSelectedOption} />
+        <div className="container">
+          <Action hasOptions={this.state.options.length > 0} handlePick={this.handlePick}/>
+          {/* this will rerender (this is a prop)*/}
+          <Options
+            options={this.state.options}
+            handleDeleteOptions={this.handleDeleteOptions}
+            handleDeleteOption={this.handleDeleteOption} />
+          <AddOption handleAddOption={this.handleAddOption} />
+          <OptionModal
+            selectedOption={this.state.selectedOption}
+            handleClearSelectedOption={this.handleClearSelectedOption} />
+        </div>
       </div>
     )
   }

@@ -1,0 +1,8 @@
+.container {
+  max-width: 60rem;
+  // if the browser is 70rem we are going to distribute evenly on the left and right 
+  margin: 0 auto;
+  // when the browser is small the text is close to the left we can change this by using padding
+  // we do not want padding on the top and bottom
+  padding: 0 $m-size; 
+}

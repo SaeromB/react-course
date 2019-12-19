@@ -12,7 +12,8 @@ module.exports = {
       test: /\.js$/,
       exclude: /node_modules/
     }, {
-      test: /\.scss$/,
+      // this will support both scss files and css files
+      test: /\.s?css$/,
       // get the code and change it scss to css 
       use: [
         'style-loader',
@@ -26,3 +27,4 @@ module.exports = {
     contentBase: path.join(__dirname, 'public')
   }
 };
+
