@@ -4,7 +4,7 @@ import React from 'react';
 // this will invoke when the onClick event is tiggered
 const Option = (props) => (
   <div className="option">
-    {props.optionText}
+    <p className="option__text">{props.count}.{props.optionText}</p>
     <button className="button button--link" onClick={(e) => {
       props.handleDeleteOption(props.optionText)}}> Remove</button>
     {/* the button will not work and call the option function change to a arrow function */}
